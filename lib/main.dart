@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rudika/src/providers/auth.provider.dart';
+import 'package:rudika/src/screens/auth/home.screen.dart';
 import 'package:rudika/src/screens/guest/login.screen.dart';
 import 'package:rudika/src/screens/guest/register.screen.dart';
 import 'package:rudika/src/screens/guest/welcome.screen.dart';
@@ -24,11 +25,12 @@ class MainApp extends StatelessWidget {
         primaryColor: Colors.black
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: 'login',
+      initialRoute: WelcomeScreen.routeName,
       routes: {
-        "welcome":(context) => const WelcomeScreen(),
+        'welcome' :(context) => const WelcomeScreen(),
         "login":(context) => const LoginScreen(),
         "register":(context) => const RegisterScreen(),
+        "home":(context) => const HomeScreen(),
       },
     );
   }

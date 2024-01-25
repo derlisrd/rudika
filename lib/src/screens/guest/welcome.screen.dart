@@ -3,6 +3,7 @@ import 'package:rudika/src/widgets/buttons/primary.button.dart';
 import 'package:rudika/src/widgets/texts/title.primary.dart';
 
 class WelcomeScreen extends StatelessWidget {
+  static const String routeName='welcome';
   const WelcomeScreen({super.key});
 
   @override

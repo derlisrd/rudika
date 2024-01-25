@@ -8,8 +8,8 @@ class Subtitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-      child: Text(data, style: GoogleFonts.poppins( textStyle: const TextStyle(fontSize: 16)  ))
+      margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 4),
+      child: Text(data, style: GoogleFonts.poppins( textStyle: const TextStyle(fontSize: 15)  ))
     );
   }
 }
