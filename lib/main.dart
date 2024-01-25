@@ -1,46 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:rudika/src/controllers/login.controller.dart';
+import 'package:rudika/src/screens/guest/login.screen.dart';
+import 'package:rudika/src/screens/guest/register.screen.dart';
+import 'package:rudika/src/screens/guest/welcome.screen.dart';
 import 'package:rudika/src/widgets/buttons/primary.button.dart';
 
 void main() {
   runApp(const MainApp());
 }
 
-class MainApp extends StatefulWidget {
+class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
-  @override
-  State<MainApp> createState() => _MainAppState();
-}
-
-class _MainAppState extends State<MainApp> {
-   LoginController loginController = LoginController();
-   TextEditingController emailTextController = TextEditingController() ;
-   TextEditingController passwordTextController = TextEditingController() ;
-  trylogin (){
-    loginController.tryLogin (emailTextController.text, passwordTextController.text);
-  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: SafeArea(
-          child: Center(
-            child: Column(
-              children: [
-                TextField(
-                  controller: emailTextController,
-                ),
-                TextField(
-                  controller: passwordTextController,
-                ),
-                PrimaryButton(text: 'INGRESAR',onTap: trylogin)
-              ],
-            ),
-          ),
-        ),
-      ),
+      initialRoute: 'welcome',
+      routes: {
+        "welcome":(context) => const WelcomeScreen(),
+        "login":(context) => const LoginScreen(),
+        "register":(context) => const RegisterScreen(),
+      },
     );
   }
 }

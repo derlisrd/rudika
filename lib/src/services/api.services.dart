@@ -6,14 +6,14 @@ class ApiServices{
 
   Future<LoginResponseModel> login(String email, String password) async{
     try {
-      var res = await Dio().post('${Contants.apiUrl}/auth/login',
+      var res = await Dio().post('${Constants.apiUrl}/auth/login',
       queryParameters:{
         "email": email,
         "password": password
       }, options: Options(
         headers: {
             "Content-Type":"application/json",
-            "x-api-key": Contants.xApiKey
+            "x-api-key": Constants.xApiKey
           }
         )
       );
