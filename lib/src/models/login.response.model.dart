@@ -6,19 +6,19 @@
 class LoginResponseModel{
   bool success;
   String? message;
-  ResultsModel? results;
+  ResultsLoginUserModel? results;
 
   LoginResponseModel({required this.success, this.message, this.results});
 
 }
 
 
-class ResultsModel{
+class ResultsLoginUserModel{
   String? username;
   String email;
   String token;
   int id;
 
-  ResultsModel({ this.username, required this.email, required this.id, required this.token});
+  ResultsLoginUserModel({ this.username, required this.email, required this.id, required this.token});
 }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rudika/src/controllers/login.controller.dart';
+import 'package:rudika/src/services/api.services.dart';
 import 'package:rudika/src/widgets/buttons/primary.button.dart';
 import 'package:rudika/src/widgets/textfields/field.password.dart';
 import 'package:rudika/src/widgets/textfields/field.primary.dart';
@@ -32,8 +33,32 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
-  void tryLogin(){
-    loginController.tryLogin(emailController.text, passwordController.text);
+  void _tryLogin() async{
+    var api = await ApiServices().loginWithEmailAndPassword(email: emailController.text, password: passwordController.text);
+    if(!api["success"]){
+     _mostrarAlert("Error", api["message"]);
+    }
+    print(api);
+  }
+
+  _mostrarAlert(String title, String txt){
+    showDialog(context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text(title),
+        content: Text(txt),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              // Cerrar el AlertDialog
+              Navigator.of(context).pop();
+            },
+            child: const Text('Cerrar'),
+          ),
+        ],
+      );
+    },
+    );
   } 
 
   @override
@@ -58,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           PrimaryButton(
             text: "INGRESAR",
-            onTap: tryLogin,
+            onTap: _tryLogin,
           )
         ],
       )),

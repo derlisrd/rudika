@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:rudika/src/providers/auth.provider.dart';
 import 'package:rudika/src/screens/guest/login.screen.dart';
 import 'package:rudika/src/screens/guest/register.screen.dart';
 import 'package:rudika/src/screens/guest/welcome.screen.dart';
 
 
 void main() {
-  runApp(const MainApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (_)=> AuthProvider())
+  ],
+    child: const MainApp(),
+  ));
 }
 
 class MainApp extends StatelessWidget {
