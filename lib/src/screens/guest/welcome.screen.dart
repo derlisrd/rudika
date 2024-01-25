@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:rudika/src/widgets/buttons/primary.button.dart';
-import 'package:rudika/src/widgets/buttons/secondary.button.dart';
 import 'package:rudika/src/widgets/texts/title.primary.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -16,8 +15,7 @@ class WelcomeScreen extends StatelessWidget {
             const SizedBox(height: 48,),
             Container( margin: const EdgeInsets.all(12), child: const Image(image: AssetImage('assets/logo.png'))),
             const SizedBox(height: 48,),
-            PrimaryButton(text: 'INGRESAR', onTap: (){ Navigator.pushNamed(context, 'login'); },),
-            SecondaryButton(text: 'REGISTRAR', onTap: () { Navigator.pushNamed(context, 'register'); },),
+            PrimaryButton(text: 'INICIAR', onTap: (){ Navigator.pushReplacementNamed(context, 'login'); },),
           ],
         ),
       ),

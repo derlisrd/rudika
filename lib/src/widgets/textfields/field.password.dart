@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
-class FieldPrimary extends StatelessWidget {
+class FieldPassword extends StatelessWidget {
   
   final String? hintText;
   final TextEditingController? controller;
-
-  const FieldPrimary({super.key, this.hintText, this.controller});
+  final bool oscureText;
+  final void Function()? onPressed;
+  const FieldPassword({super.key, this.hintText, this.controller, required this.oscureText, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,12 @@ class FieldPrimary extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
             child: TextField(
               controller: controller,
+              obscureText: oscureText,
               decoration: InputDecoration(
+                  suffixIcon: IconButton(
+                     icon: Icon( oscureText ?  Icons.visibility_off : Icons.visibility),
+                     onPressed: onPressed,
+                   ),
                   hintText: hintText,
                   enabledBorder:
                       OutlineInputBorder(

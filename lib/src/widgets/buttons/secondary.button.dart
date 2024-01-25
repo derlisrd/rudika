@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class SecondaryButton extends StatelessWidget {
@@ -27,7 +28,7 @@ class SecondaryButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(6)
           )
         ),
-        child:  Text(text, style: const TextStyle(color: Colors.black, fontSize: 18),),
+        child:  Text(text, style: GoogleFonts.montserrat( textStyle: const TextStyle(fontSize: 16, color: Colors.black)  )),
       ),
     );
   }

@@ -10,7 +10,9 @@ dependencies:
   dio: ^5.4.0
   flutter:
     sdk: flutter
+  flutter_native_splash: ^2.3.9
   provider: ^6.1.1
+  google_fonts: ^5.1.0
 
 dev_dependencies:
   flutter_test:

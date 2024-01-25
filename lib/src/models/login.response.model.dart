@@ -21,3 +21,4 @@ class ResultsModel{
 
   ResultsModel({ this.username, required this.email, required this.id, required this.token});
 }
+

@@ -1,10 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:rudika/src/config/constants.dart';
-import 'package:rudika/src/models/login.response.model.dart';
+
 
 class ApiServices{
 
-  Future<LoginResponseModel> login(String email, String password) async{
+  
+
+  Future<dynamic> loginWithEmailAndPassword(String email, String password) async{
     try {
       var res = await Dio().post('${Constants.apiUrl}/auth/login',
       queryParameters:{
@@ -12,20 +14,21 @@ class ApiServices{
         "password": password
       }, options: Options(
         headers: {
-            "Content-Type":"application/json",
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
             "x-api-key": Constants.xApiKey
           }
         )
       );
-      if(res.statusCode == 200){
-
-        return LoginResponseModel(success: res.data["success"], results: res.data["results"]);
-      }else{
-        return LoginResponseModel(success: false);
+      if (res.statusCode == 200) {
+        return res.data;
+      } else{
+        print(res.data);
+        return res;
       }
-
-    } catch (  error ) {
-      return LoginResponseModel(success: false);
+    } catch (  e ) {
+      print('Error api services');
+      return null;
     }
 
   }

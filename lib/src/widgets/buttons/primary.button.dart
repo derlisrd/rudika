@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 
 class PrimaryButton extends StatelessWidget {
   final String text;
@@ -10,7 +10,9 @@ class PrimaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8,horizontal: 24),
-      width: double.infinity,
+      constraints: const BoxConstraints(
+        maxHeight: 480,
+      ),
       child: ElevatedButton(
         onPressed: onTap,
         style: ElevatedButton.styleFrom(
@@ -20,7 +22,7 @@ class PrimaryButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(6)
           )
         ),
-        child:  Text(text, style: const TextStyle(color: Colors.white, fontSize: 18),),
+        child:  Text(text, style: GoogleFonts.poppins( textStyle: const TextStyle(fontSize: 16, color: Colors.white)  )),
       ),
     );
   }
