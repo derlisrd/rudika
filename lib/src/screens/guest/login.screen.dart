@@ -70,27 +70,34 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: context.watch<AuthProvider>().isLoading ? _loadingScreen(context) : SafeArea(
-          child: Column(
-        children: [
-          const Center(child: TitlePrimary("Entrar")),
-          FieldPrimary( hintText: 'E-mail', controller: emailController,),
-          FieldPassword( oscureText: passwordVisible, hintText: 'Contraseña', onPressed: switchPass, controller: passwordController,),
-          Row(
-            children: [
-              const SizedBox(width: 18),
-              const Subtitle('No tienes cuenta?'),
-              GestureDetector(
-                onTap: (){ Navigator.pushNamed(context, 'register');},
-                child: const Subtitle('Registrate'),
+          child: Center(
+            child: Container(
+              constraints: const BoxConstraints(
+                maxWidth: 480,
               ),
-            ],
-          ),
-          PrimaryButton(
-            text: "INGRESAR",
-            onTap: (){ _tryLogin(context);},
+              child: Column(
+                      children: [
+              const Center(child: TitlePrimary("Entrar")),
+              FieldPrimary( hintText: 'E-mail', controller: emailController,),
+              FieldPassword( oscureText: passwordVisible, hintText: 'Contraseña', onPressed: switchPass, controller: passwordController,),
+              Row(
+                children: [
+                  const SizedBox(width: 18),
+                  const Subtitle('No tienes cuenta?'),
+                  GestureDetector(
+                    onTap: (){ Navigator.pushNamed(context, 'register');},
+                    child: const Subtitle('Registrate'),
+                  ),
+                ],
+              ),
+              PrimaryButton(
+                text: "INGRESAR",
+                onTap: (){ _tryLogin(context);},
+              )
+                      ],
+                    ),
+            ),
           )
-        ],
-      )
       ) ,
     );
   }
