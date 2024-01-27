@@ -39,7 +39,6 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _tryLogin(BuildContext context) async{
-    
     if(emailController.text.isEmpty){
       setState(() {
         emailError = "Complete el campo email correctamente";
@@ -76,9 +75,6 @@ class _LoginScreenState extends State<LoginScreen> {
         context.read<AuthProvider>().setUser(api["results"]);
       });
     }
-
-    
-    
   }
 
 
