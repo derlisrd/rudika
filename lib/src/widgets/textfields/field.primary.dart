@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 
 class FieldPrimary extends StatelessWidget {
   
+  final String? errorText;
   final String? hintText;
   final TextEditingController? controller;
 
-  const FieldPrimary({super.key, this.hintText, this.controller});
+  const FieldPrimary({super.key, this.hintText, this.controller ,this.errorText});
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +16,17 @@ class FieldPrimary extends StatelessWidget {
               controller: controller,
               decoration: InputDecoration(
                   hintText: hintText,
+                  errorText: errorText,
+                  errorBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.red
+                    )
+                  ),
+                  focusedErrorBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.red
+                    )
+                  ),
                   enabledBorder:
                       OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4),

@@ -22,7 +22,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController= TextEditingController();
-
+  String emailError = '';
+  String passwordError ='';
   bool passwordVisible=false; 
   
    @override 
@@ -38,7 +39,27 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _tryLogin(BuildContext context) async{
-      setState(() {context.read<AuthProvider>().setIsLoading(true);});
+    
+    if(emailController.text.isEmpty){
+      setState(() {
+        emailError = "Complete el campo email correctamente";
+      });
+      return;
+    }
+    setState(() {
+        emailError = "";
+      });
+    if(passwordController.text.isEmpty){
+      setState(() {
+        passwordError = "Complete el campo contraseña correctamente";
+      });
+      return;
+    }
+      setState(() {
+        passwordError = "";
+      });
+    
+    setState(() {context.read<AuthProvider>().setIsLoading(true);});
     var api = await ApiServices().loginWithEmailAndPassword(email: emailController.text, password: passwordController.text);
     
     if(!api["success"]){
@@ -78,8 +99,8 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                       children: [
               const Center(child: TitlePrimary("Entrar")),
-              FieldPrimary( hintText: 'E-mail', controller: emailController,),
-              FieldPassword( oscureText: passwordVisible, hintText: 'Contraseña', onPressed: switchPass, controller: passwordController,),
+              FieldPrimary( hintText: 'E-mail', controller: emailController, errorText: emailError.isEmpty ? null : emailError ,),
+              FieldPassword( oscureText: passwordVisible, hintText: 'Contraseña', errorText: passwordError.isEmpty ? null : passwordError, onPressed: switchPass, controller: passwordController,),
               Row(
                 children: [
                   const SizedBox(width: 18),
@@ -109,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
       return AlertDialog(
         title: Text(title),
         content: Text(txt),
-        actions: <Widget>[
+        actions: [
           TextButton(
             onPressed: () {
               // Cerrar el AlertDialog

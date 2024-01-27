@@ -10,6 +10,9 @@ class SecondaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      constraints: const BoxConstraints(
+        minWidth: 280,
+      ),
       decoration: BoxDecoration(
         border: Border.all(
           color: Colors.black,
@@ -23,9 +26,9 @@ class SecondaryButton extends StatelessWidget {
         onPressed: onTap,
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.white,
-          padding: const EdgeInsets.symmetric(horizontal: 24,vertical: 18),
+          padding: const EdgeInsets.symmetric(horizontal: 18,vertical: 18),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(6)
+            borderRadius: BorderRadius.circular(12)
           )
         ),
         child:  Text(text, style: GoogleFonts.montserrat( textStyle: const TextStyle(fontSize: 16, color: Colors.black)  )),

@@ -11,15 +11,15 @@ class PrimaryButton extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8,horizontal: 24),
       constraints: const BoxConstraints(
-        maxHeight: 480,
+        minWidth: 280,
       ),
       child: ElevatedButton(
         onPressed: onTap,
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.black,
-          padding: const EdgeInsets.symmetric(horizontal: 24,vertical: 18),
+          padding: const EdgeInsets.symmetric(horizontal: 18,vertical: 18),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(6)
+            borderRadius: BorderRadius.circular(12)
           )
         ),
         child:  Text(text, style: GoogleFonts.poppins( textStyle: const TextStyle(fontSize: 16, color: Colors.white)  )),

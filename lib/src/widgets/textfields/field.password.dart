@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 class FieldPassword extends StatelessWidget {
   
   final String? hintText;
+  final String? errorText;
   final TextEditingController? controller;
   final bool oscureText;
   final void Function()? onPressed;
-  const FieldPassword({super.key, this.hintText, this.controller, required this.oscureText, this.onPressed});
+  const FieldPassword({super.key, this.hintText, this.controller, required this.oscureText, this.onPressed, this.errorText});
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +22,17 @@ class FieldPassword extends StatelessWidget {
                      onPressed: onPressed,
                    ),
                   hintText: hintText,
+                  errorText: errorText,
+                  errorBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.red
+                    )
+                  ),
+                  focusedErrorBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.red
+                    )
+                  ),
                   enabledBorder:
                       OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4),
