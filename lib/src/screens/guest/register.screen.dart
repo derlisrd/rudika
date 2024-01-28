@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rudika/src/models/register.response.model.dart';
 import 'package:rudika/src/services/api.services.dart';
 import 'package:rudika/src/utils/utils.dart';
 import 'package:rudika/src/widgets/buttons/primary.button.dart';
@@ -72,19 +73,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
       return;
     }
     setState(() => _isLoading = true,);
-    var registro = await ApiServices().registerWithEmailAndPassword(
+    RegisterModelResponse registro = await ApiServices().registerWithEmailAndPassword(
       email: emailController.text,
       password: passwordController.text,
       name: nameController.text,
       passwordConfirmation: password2Controller.text);
     
-    if(registro["success"]){
-      _mostrarAlert('Registro creado','Ya puedes iniciar sesion con tus credenciales.');
-      if (context.mounted) Navigator.pushNamed(context, 'login');
-    }else{
-      _mostrarAlert("Error", registro['message']);
-    }
-      setState(() => _isLoading = false);
+      if(registro.success){
+        setState(() => _isLoading = false,);
+        _mostrarAlert('Registro creado','Ya puedes iniciar sesion con tus credenciales.',(){ if (context.mounted) Navigator.pushNamed(context, 'login');});
+        
+      }else{
+        setState(() => _isLoading = false,);
+        _mostrarAlert("Error", registro.message, () => Navigator.pop(context));
+      }
+
 
   }
 
@@ -99,7 +102,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  _mostrarAlert(String title, String txt){
+  _mostrarAlert(String title, String txt, Function() onPress){
     showDialog(context: context,
     builder: (BuildContext context) {
       return AlertDialog(
@@ -107,10 +110,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         content: Text(txt),
         actions: [
           TextButton(
-            onPressed: () {
-              // Cerrar el AlertDialog
-              Navigator.of(context).pop();
-            },
+            onPressed: onPress,
             child: const Text('Cerrar'),
           ),
         ],
