@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:rudika/src/models/user.model.dart';
+import 'package:rudika/src/models/login.response.model.dart';
 
 class AuthProvider extends ChangeNotifier {
 
   bool _isLoading = false;
 
   bool _isAuth = false;
-  UserModel _user = UserModel(email: '', id: 0, token: '');
+ ResultsLoginUserModel _user = ResultsLoginUserModel(email: '', id: 0, token: '', username: '');
 
-  UserModel get user => _user;
+ ResultsLoginUserModel get user => _user;
 
   bool get isAuth => _isAuth;
 
@@ -24,14 +24,14 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setUser(Map<String,dynamic> json){
-    _user = UserModel.fromMap(json);
+  void setUser(ResultsLoginUserModel usuario){
+    _user = usuario;
     notifyListeners();
   }
 
-  void setUserFromModel(UserModel userProveido){
+  /* void setUserFromModel(UserModel userProveido){
     _user = userProveido;
     notifyListeners();
-  }
+  } */
 
 }

@@ -1,5 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'package:rudika/src/config/constants.dart';
+import 'package:rudika/src/models/login.response.model.dart';
 import 'dart:convert';
 
 import 'package:rudika/src/models/register.response.model.dart';
@@ -9,7 +10,7 @@ class ApiServices{
 
   
 
-  Future<Map<String,dynamic>> loginWithEmailAndPassword({ required String email, required  String password}) async{
+  Future<LoginResponseModel> loginWithEmailAndPassword({ required String email, required  String password}) async{
     try {
 
       http.Response res = await http.post(
@@ -24,18 +25,14 @@ class ApiServices{
           'x-api-key': Constants.xApiKey
         },
       );
-
-      var json = jsonDecode(res.body);
-      Map<String,dynamic> respuesta = {"success":false};
-      if(json['success']){
-        respuesta = {"success": json['success'], "results": json["results"]};
-      }else{
-        respuesta = {"success":false, "message": json["message"]};
-      }
-      return respuesta;
+      //print(res.body);
+      Map<String,dynamic> json = jsonDecode(res.body);
+       LoginResponseModel loginResponse = LoginResponseModel.fromMap(json);
+       return loginResponse;
     } catch (e) {
       Map<String,dynamic> error = {"success": false, "message": e.toString()};
-      return error;
+      LoginResponseModel loginResponseError = LoginResponseModel.fromMap(error);
+      return loginResponseError;
     }
 
   }

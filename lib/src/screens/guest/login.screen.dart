@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rudika/src/models/login.response.model.dart';
 import 'package:rudika/src/providers/auth.provider.dart';
 
 import 'package:rudika/src/services/api.services.dart';
@@ -59,20 +60,20 @@ class _LoginScreenState extends State<LoginScreen> {
       });
     
     setState(() {context.read<AuthProvider>().setIsLoading(true);});
-    var api = await ApiServices().loginWithEmailAndPassword(email: emailController.text, password: passwordController.text);
+    LoginResponseModel api = await ApiServices().loginWithEmailAndPassword(email: emailController.text, password: passwordController.text);
     
-    if(!api["success"]){
-     _mostrarAlert("Error", api["message"]);
+    if(!api.success){
+     _mostrarAlert("Error", api.message ?? "Error");
      setState(() {
       context.read<AuthProvider>().setIsLoading(false);
       
      });
     }
-    if(api["success"]){
+    if(api.success){
       if (context.mounted) Navigator.pushReplacementNamed(context, 'home');
       setState(() {
         context.read<AuthProvider>().setIsAuth(true);
-        context.read<AuthProvider>().setUser(api["results"]);
+        context.read<AuthProvider>().setUser(api.results);
       });
     }
   }
