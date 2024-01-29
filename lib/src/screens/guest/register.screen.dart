@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:rudika/src/models/register.response.model.dart';
 import 'package:rudika/src/services/api.services.dart';
 import 'package:rudika/src/utils/utils.dart';
-import 'package:rudika/src/widgets/buttons/primary.button.dart';
-import 'package:rudika/src/widgets/textfields/field.password.dart';
-import 'package:rudika/src/widgets/textfields/field.primary.dart';
-import 'package:rudika/src/widgets/texts/subtitle.dart';
-import 'package:rudika/src/widgets/texts/title.primary.dart';
+import 'package:rudika/src/widgets/index.dart';
+
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});

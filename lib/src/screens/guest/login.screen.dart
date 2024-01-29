@@ -2,13 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rudika/src/models/login.response.model.dart';
 import 'package:rudika/src/providers/auth.provider.dart';
-
 import 'package:rudika/src/services/api.services.dart';
-import 'package:rudika/src/widgets/buttons/primary.button.dart';
-import 'package:rudika/src/widgets/textfields/field.password.dart';
-import 'package:rudika/src/widgets/textfields/field.primary.dart';
-import 'package:rudika/src/widgets/texts/subtitle.dart';
-import 'package:rudika/src/widgets/texts/title.primary.dart';
+import 'package:rudika/src/widgets/index.dart';
+
 
 
 

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rudika/src/providers/auth.provider.dart';
-import 'package:rudika/src/screens/auth/home.screen.dart';
-import 'package:rudika/src/screens/guest/login.screen.dart';
-import 'package:rudika/src/screens/guest/register.screen.dart';
-import 'package:rudika/src/screens/guest/welcome.screen.dart';
+import 'package:rudika/src/screens/index.dart';
 
 
 void main() {

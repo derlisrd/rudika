@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rudika/src/widgets/buttons/primary.button.dart';
-import 'package:rudika/src/widgets/texts/title.primary.dart';
+import 'package:rudika/src/widgets/index.dart';
 
 class WelcomeScreen extends StatelessWidget {
   static const String routeName='welcome';
