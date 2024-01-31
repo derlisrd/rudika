@@ -31,6 +31,13 @@ class _HomeScreenState extends State<HomeScreen> {
     String token =  Provider.of<AuthProvider>(context).user.token;
     int id =  Provider.of<AuthProvider>(context).user.id;
     return  Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        elevation: 0,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home',activeIcon: Icon(Icons.home)),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Home',activeIcon: Icon(Icons.settings)),
+        ]
+        ),
       body: SafeArea(child: 
         Column(
           children: [
