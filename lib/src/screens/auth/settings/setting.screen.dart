@@ -3,14 +3,14 @@ import 'package:provider/provider.dart';
 import 'package:rudika/src/providers/auth.provider.dart';
 import 'package:rudika/src/widgets/buttons/secondary.button.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class SettingScreen extends StatefulWidget {
+  const SettingScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<SettingScreen> createState() => _SettingScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _SettingScreenState extends State<SettingScreen> {
   
   
   @override 
@@ -30,15 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     String email =  Provider.of<AuthProvider>(context).user.email;
     String token =  Provider.of<AuthProvider>(context).user.token;
     int id =  Provider.of<AuthProvider>(context).user.id;
-    return  Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        elevation: 0,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home',activeIcon: Icon(Icons.home)),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Home',activeIcon: Icon(Icons.settings)),
-        ]
-        ),
-      body: SafeArea(child: 
+    return  SafeArea(child: 
         Column(
           children: [
             Text( email ),
@@ -47,7 +39,6 @@ class _HomeScreenState extends State<HomeScreen> {
             SecondaryButton(text: 'SALIR', onTap: (){ _salir(context); })
           ],
         )
-      ),
-    );
+      );
   }
 }

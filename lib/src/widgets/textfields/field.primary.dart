@@ -15,6 +15,8 @@ class FieldPrimary extends StatelessWidget {
             child: TextField(
               controller: controller,
               decoration: InputDecoration(
+                  fillColor: Colors.white,
+                  filled: true,
                   hintText: hintText,
                   errorText: errorText,
                   errorBorder: const OutlineInputBorder(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rudika/src/config/constants.dart';
 
 class PrimaryButton extends StatelessWidget {
   final String text;
@@ -16,7 +17,7 @@ class PrimaryButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onTap,
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.black,
+          backgroundColor: Constants.primaryColor,
           padding: const EdgeInsets.symmetric(horizontal: 18,vertical: 18),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12)

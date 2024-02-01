@@ -17,6 +17,8 @@ class FieldPassword extends StatelessWidget {
               controller: controller,
               obscureText: oscureText,
               decoration: InputDecoration(
+                  fillColor: Colors.white,
+                  filled: true,
                   suffixIcon: IconButton(
                      icon: Icon( oscureText ?  Icons.visibility_off : Icons.visibility),
                      onPressed: onPressed,

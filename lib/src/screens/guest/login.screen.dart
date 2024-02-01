@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rudika/src/config/constants.dart';
 import 'package:rudika/src/models/login.response.model.dart';
 import 'package:rudika/src/providers/auth.provider.dart';
 import 'package:rudika/src/services/api.services.dart';
@@ -66,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
      });
     }
     if(api.success){
-      if (context.mounted) Navigator.pushReplacementNamed(context, 'home');
+      if (context.mounted) Navigator.pushReplacementNamed(context, 'authmain');
       setState(() {
         context.read<AuthProvider>().setIsAuth(true);
         context.read<AuthProvider>().setUser(api.results);
@@ -82,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
     
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Constants.backgroundLightColor,
       body: context.watch<AuthProvider>().isLoading ? _loadingScreen(context) : SafeArea(
           child: Center(
             child: Container(
@@ -91,23 +92,25 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               child: Column(
                       children: [
-              const Center(child: TitlePrimary("Entrar")),
-              FieldPrimary( hintText: 'E-mail', controller: emailController, errorText: emailError.isEmpty ? null : emailError ,),
-              FieldPassword( oscureText: passwordVisible, hintText: 'Contraseña', errorText: passwordError.isEmpty ? null : passwordError, onPressed: switchPass, controller: passwordController,),
-              Row(
-                children: [
-                  const SizedBox(width: 18),
-                  const Subtitle('No tienes cuenta?'),
-                  GestureDetector(
-                    onTap: (){ Navigator.pushNamed(context, 'register');},
-                    child: const Subtitle('Registrate'),
-                  ),
-                ],
-              ),
-              PrimaryButton(
-                text: "INGRESAR",
-                onTap: (){ _tryLogin(context);},
-              )
+                        const SizedBox(height: 12),
+                        const Icon(Icons.lock,size: 64),
+                        const Center(child: TitlePrimary("Entrar")),
+                        FieldPrimary( hintText: 'E-mail', controller: emailController, errorText: emailError.isEmpty ? null : emailError ,),
+                        FieldPassword( oscureText: passwordVisible, hintText: 'Contraseña', errorText: passwordError.isEmpty ? null : passwordError, onPressed: switchPass, controller: passwordController,),
+                        Row(
+                          children: [
+                            const SizedBox(width: 18),
+                            const Subtitle('No tienes cuenta?'),
+                            GestureDetector(
+                              onTap: (){ Navigator.pushNamed(context, 'register');},
+                              child: const Subtitle('Registrate'),
+                            ),
+                          ],
+                        ),
+                        PrimaryButton(
+                          text: "INGRESAR",
+                          onTap: (){ _tryLogin(context);},
+                        )
                       ],
                     ),
             ),
