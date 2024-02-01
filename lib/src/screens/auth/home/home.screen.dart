@@ -27,12 +27,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
 
     String email =  Provider.of<AuthProvider>(context).user.email;
-    String token =  Provider.of<AuthProvider>(context).user.token;
-    int id =  Provider.of<AuthProvider>(context).user.id;
-    return const SafeArea(child: 
+    return  SafeArea(child: 
         Column(
           children: [
-            Text('hola')
+            Text(email)
           ],
         )
       );
