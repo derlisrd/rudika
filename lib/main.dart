@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:rudika/src/config/constants.dart';
 import 'package:rudika/src/providers/auth.provider.dart';
-import 'package:rudika/src/screens/index.dart';
-
+import 'package:rudika/src/routes/routes.dart';
 
 void main() {
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (_)=> AuthProvider())
-  ],
+  runApp(MultiProvider(
+    providers: [ChangeNotifierProvider(create: (_) => AuthProvider())],
     child: const MainApp(),
   ));
 }
@@ -20,18 +17,22 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        colorSchemeSeed: Constants.primaryColor,
-      ),
+          colorScheme: const ColorScheme(
+              brightness: Brightness.dark,
+              primary: Colors.blueGrey,
+              onPrimary: Colors.black,
+              secondary: Colors.green,
+              onSecondary: Colors.red,
+              error: Colors.red,
+              onError: Colors.red,
+              background: Colors.white30,
+              onBackground: Colors.deepPurple,
+              surface: Colors.black45,
+              onSurface: Colors.white)
+              ),
       debugShowCheckedModeBanner: false,
-      initialRoute: WelcomeScreen.routeName,
-      routes: {
-        'welcome' :(context) => const WelcomeScreen(),
-        "login":(context) => const LoginScreen(),
-        "register":(context) => const RegisterScreen(),
-        "authmain":(context) => const AuthScreen(),
-        "home":(context) => const HomeScreen(),
-        "settings":(context) => const SettingScreen(),
-      },
+      initialRoute: Routes().initialRoute,
+      routes: Routes().routes(context),
     );
   }
 }

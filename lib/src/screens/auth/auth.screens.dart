@@ -17,26 +17,40 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-        elevation: 0,
-        currentIndex: selectedIndex,
-        onTap: (value){
-          setState(() {
-            selectedIndex = value;
-          });
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton(onPressed: () {
+          
         },
-        selectedItemColor: Constants.primaryColor,
-        unselectedItemColor: Colors.black54,
-        backgroundColor: Colors.amber,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_filled),
-            label: 'Home',
-            activeIcon: Icon(Icons.home)
+        shape: const CircleBorder(),
+        child: const Icon(Icons.add),
+        ),
+        bottomNavigationBar: ClipRRect(
+          borderRadius: const BorderRadius.vertical(
+            top: Radius.circular(30)
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), 
-          label: 'Settings',activeIcon: Icon(Icons.settings)),
-        ]
+          child: BottomNavigationBar(
+            elevation: 0,
+            showUnselectedLabels: false,
+            showSelectedLabels: false,
+            currentIndex: selectedIndex,
+            onTap: (value){
+              setState(() {
+                selectedIndex = value;
+              });
+            },
+            selectedItemColor: Constants.primaryColor,
+            unselectedItemColor: Colors.black54,
+            backgroundColor: Colors.white,
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home_filled),
+                label: 'Home',
+                activeIcon: Icon(Icons.home)
+              ),
+              BottomNavigationBarItem(icon: Icon(Icons.settings), 
+              label: 'Settings',activeIcon: Icon(Icons.settings)),
+            ]
+          ),
         ),
       body: 
       IndexedStack(

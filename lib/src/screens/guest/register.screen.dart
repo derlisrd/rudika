@@ -94,7 +94,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          child: _isLoading ? _loadingScreen() : _formulario(context)
+          child: _isLoading ? _loadingScreen() : SingleChildScrollView( child: _formulario(context),)
       ),
     );
   }
@@ -121,6 +121,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return (
       Column(
         children: [
+          const SizedBox(height: 12),
+          const Icon(Icons.person,size: 48),
           const Center(child: TitlePrimary("Registrarme")),
           FieldPrimary( controller: nameController, hintText: 'Nombre',errorText: nameError.isEmpty ? null : nameError ),
           FieldPrimary( controller: emailController, hintText: 'E-mail', errorText: emailError.isEmpty ? null : emailError ),

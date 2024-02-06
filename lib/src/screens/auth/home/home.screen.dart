@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rudika/src/providers/auth.provider.dart';
+import 'package:rudika/src/widgets/index.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -30,7 +31,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return  SafeArea(child: 
         Column(
           children: [
-            Text(email)
+            Text(email),
+            
+            const TitlePrimary('1.900.000')
           ],
         )
       );

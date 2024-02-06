@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:rudika/src/config/constants.dart';
 import 'package:rudika/src/models/login.response.model.dart';
 import 'package:rudika/src/providers/auth.provider.dart';
 import 'package:rudika/src/services/api.services.dart';
@@ -83,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
     
 
     return Scaffold(
-      backgroundColor: Constants.backgroundLightColor,
+/*       backgroundColor: Constants.backgroundLightColor, */
       body: context.watch<AuthProvider>().isLoading ? _loadingScreen(context) : SafeArea(
           child: Center(
             child: Container(
