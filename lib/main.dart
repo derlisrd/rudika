@@ -19,13 +19,13 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
           colorScheme: const ColorScheme(
               brightness: Brightness.dark,
-              primary: Colors.blueGrey,
+              primary: Colors.white,
               onPrimary: Colors.black,
               secondary: Colors.green,
               onSecondary: Colors.red,
               error: Colors.red,
               onError: Colors.red,
-              background: Colors.white30,
+              background: Colors.white10,
               onBackground: Colors.deepPurple,
               surface: Colors.black45,
               onSurface: Colors.white)

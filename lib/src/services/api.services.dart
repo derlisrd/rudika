@@ -69,4 +69,28 @@ class ApiServices{
   }
 
 
+  void getMovements(String token) async {
+     try {
+
+      http.Response res = await http.get(
+        Uri.parse('${Constants.apiUrl}/movements'),
+        headers:{
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'x-api-key': Constants.xApiKey,
+          'Authorization' : 'Bearer $token'
+        },
+      );
+
+      Map<String,dynamic> json = jsonDecode(res.body);
+
+      print(json);
+      
+    } catch (e) {
+      Map<String,dynamic> error = {"success": false, "message": e.toString()};
+      print(error);
+    }
+  }
+
+
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rudika/src/providers/auth.provider.dart';
+import 'package:rudika/src/services/api.services.dart';
 import 'package:rudika/src/widgets/index.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -15,7 +16,9 @@ class _HomeScreenState extends State<HomeScreen> {
   
   @override 
   void initState(){ 
-      super.initState(); 
+      super.initState();
+      String token = context.read<AuthProvider>().user.token;
+      ApiServices().getMovements(token);
   }
   void _salir(BuildContext context){
     context.read<AuthProvider>().setIsLoading(false);

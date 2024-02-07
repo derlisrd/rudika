@@ -123,15 +123,14 @@ class _LoginScreenState extends State<LoginScreen> {
     showDialog(context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text(title),
-        content: Text(txt),
+        title: MontseText(title),
+        content: MontseText(txt),
         actions: [
           TextButton(
             onPressed: () {
-              // Cerrar el AlertDialog
               Navigator.of(context).pop();
             },
-            child: const Text('Cerrar'),
+            child: const MontseText('Cerrar'),
           ),
         ],
       );
