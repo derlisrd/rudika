@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rudika/src/providers/auth.provider.dart';
+import 'package:rudika/src/utils/local.storage.dart';
 import 'package:rudika/src/widgets/buttons/secondary.button.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -11,16 +12,19 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
-  
+
+    LocalStorage local = LocalStorage();
   
   @override 
   void initState(){ 
       super.initState(); 
   }
-  void _salir(BuildContext context){
+  
+  void _salir(BuildContext context) async{
     context.read<AuthProvider>().setIsLoading(false);
     context.read<AuthProvider>().setIsAuth(false);
-    Navigator.pushReplacementNamed(context, 'login'); 
+    await local.removeString('token');
+    if (context.mounted) Navigator.pushReplacementNamed(context, 'login'); 
   }
   
 

@@ -12,33 +12,39 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+
   
-  
-  @override 
-  void initState(){ 
-      super.initState();
-      String token = context.read<AuthProvider>().user.token;
-      ApiServices().getMovements(token);
+  @override
+  void initState() {
+    super.initState();
+    String token = context.read<AuthProvider>().user.token;
+    ApiServices().getMovements(token);
   }
-  void _salir(BuildContext context){
+
+  void _salir(BuildContext context) {
     context.read<AuthProvider>().setIsLoading(false);
     context.read<AuthProvider>().setIsAuth(false);
-    Navigator.pushReplacementNamed(context, 'login'); 
+    Navigator.pushReplacementNamed(context, 'login');
   }
-  
 
   @override
   Widget build(BuildContext context) {
-
-    String email =  Provider.of<AuthProvider>(context).user.email;
-    return  SafeArea(child: 
-        Column(
-          children: [
-            Text(email),
-            
-            const TitlePrimary('1.900.000')
-          ],
+    String email = Provider.of<AuthProvider>(context).user.email;
+    return SafeArea(
+        child: Column(
+      children: [
+        Text(email),
+        const Card(
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, 
+              children: [
+                MontseText('Balance'),
+                TitlePrimary('1.900.000'),
+              ]
+          ),
         )
-      );
+      ],
+    ));
   }
 }

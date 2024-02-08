@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 import 'package:rudika/src/models/login.response.model.dart';
 import 'package:rudika/src/providers/auth.provider.dart';
 import 'package:rudika/src/services/api.services.dart';
+import 'package:rudika/src/utils/local.storage.dart';
 import 'package:rudika/src/widgets/index.dart';
 
 
@@ -22,12 +23,16 @@ class _LoginScreenState extends State<LoginScreen> {
   String emailError = '';
   String passwordError ='';
   bool passwordVisible=false; 
+
+  LocalStorage local = LocalStorage();
   
    @override 
   void initState(){ 
       super.initState(); 
-      passwordVisible=true; 
+      passwordVisible=true;
   }
+
+
 
   void switchPass (){
     setState(() {
@@ -66,11 +71,12 @@ class _LoginScreenState extends State<LoginScreen> {
      });
     }
     if(api.success){
-      if (context.mounted) Navigator.pushReplacementNamed(context, 'authmain');
       setState(() {
         context.read<AuthProvider>().setIsAuth(true);
         context.read<AuthProvider>().setUser(api.results);
       });
+      local.storeString('token', api.results.token);
+      if (context.mounted) Navigator.pushReplacementNamed(context, 'authmain');
     }
   }
 
