@@ -1,4 +1,4 @@
-
+import 'package:flutter/material.dart';
 import 'package:rudika/src/widgets/index.dart';
 
 class WelcomeScreen extends StatelessWidget {

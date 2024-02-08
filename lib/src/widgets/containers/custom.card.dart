@@ -3,18 +3,20 @@
 
 import 'package:flutter/material.dart';
 
-class Card extends StatelessWidget {
+class CustomCard extends StatelessWidget {
 
   final Widget child;
-  const Card({super.key, required this.child});
+  const CustomCard({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      constraints: const BoxConstraints(
+        maxWidth: 480,
+      ),
       padding: const EdgeInsets.all(14),
       margin: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-          color: Colors.white60, 
           borderRadius: BorderRadius.circular(12),
           border: Border.all(width: 2, color: Colors.white)
           ),

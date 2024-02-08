@@ -26,7 +26,7 @@ class _AuthScreenState extends State<AuthScreen> {
         ),
         bottomNavigationBar: ClipRRect(
           borderRadius: const BorderRadius.vertical(
-            top: Radius.circular(30)
+            top: Radius.circular(0)
           ),
           child: BottomNavigationBar(
             elevation: 0,
@@ -43,12 +43,14 @@ class _AuthScreenState extends State<AuthScreen> {
             backgroundColor: Colors.white,
             items: const [
               BottomNavigationBarItem(
-                icon: Icon(Icons.home_filled),
+                icon: Icon(Icons.dashboard),
                 label: 'Home',
-                activeIcon: Icon(Icons.home)
+                activeIcon: Icon(Icons.grid_view)
               ),
-              BottomNavigationBarItem(icon: Icon(Icons.settings), 
-              label: 'Settings',activeIcon: Icon(Icons.settings)),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.settings), 
+                label: 'Settings',activeIcon: Icon(Icons.settings)
+              ),
             ]
           ),
         ),

@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
       children: [
         Text(email),
-        const Card(
+        const CustomCard(
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, 
               children: [
