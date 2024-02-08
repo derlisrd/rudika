@@ -19,7 +19,7 @@ class _AuthScreenState extends State<AuthScreen> {
     return Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(onPressed: () {
-          
+          Navigator.pushNamed(context, 'add');
         },
         shape: const CircleBorder(),
         child: const Icon(Icons.add),

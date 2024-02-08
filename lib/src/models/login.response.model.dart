@@ -20,13 +20,14 @@ class LoginResponseModel{
 
  //*  ACA DEBES CAMBIAR EL MODELO *//
   factory LoginResponseModel.fromMap(Map<String, dynamic> json) {
+    var result = json['results'];
     return LoginResponseModel(
         success: json['success'] ?? false,
         results: ResultsLoginUserModel(
-          email: json['results']?['email'] ?? '', 
-          token: json['results']?['token'] ?? '', 
-          id: json['results']?['id'] ?? 0, 
-          username: json['results']?['username'] ?? ''),
+          email: result?['email'] ?? '', 
+          token: result?['token'] ?? '', 
+          id: result?['id'] ?? 0, 
+          username: result?['username'] ?? ''),
         message: json['message'] ?? ''
     );
   }

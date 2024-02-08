@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:rudika/src/providers/auth.provider.dart';
 import 'package:rudika/src/services/api.services.dart';
 import 'package:rudika/src/widgets/index.dart';
+import 'package:intl/intl.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,12 +15,33 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
 
 
+  String balance = '0';
+  bool loadingBalance = true;
   
   @override
   void initState() {
     super.initState();
     String token = context.read<AuthProvider>().user.token;
-    ApiServices().getMovements(token);
+    _getMov(token);
+  }
+
+  void _getMov (token)async{
+    var res = await ApiServices().getMovements(token);
+    int nuevoBalance = 0;
+    if(res.success){
+      for (var el in res.results) {
+        if(el.tipo == 0){
+          nuevoBalance -= el.value;
+        }else{
+          nuevoBalance += el.value;
+        }
+      }
+    }
+    setState(() {
+      var f = NumberFormat ("#,##0", "de_DE");
+      balance = f.format(nuevoBalance);
+      loadingBalance = false;
+    });
   }
 
   void _salir(BuildContext context) {
@@ -35,12 +57,12 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
       children: [
         Text(email),
-        const CustomCard(
+         CustomCard(
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, 
               children: [
-                MontseText('Balance'),
-                TitlePrimary('1.900.000'),
+                const MontseText('Balance'),
+                TitlePrimary(loadingBalance ? '...' : balance),
               ]
           ),
         )

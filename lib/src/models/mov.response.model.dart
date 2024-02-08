@@ -1,21 +1,23 @@
+
+
 class MovResponseModel {
   bool success;
   final List<MovModel> results;
 
   MovResponseModel({required this.success, required this.results});
 
-  Map<String,dynamic> toMap(){
+  Map<String, dynamic> toMap() {
     return {
       "success": success,
-      "results": results,
+      "results": results.map((result) => result.toJson()).toList(),
     };
   }
 
  //*  ACA DEBES CAMBIAR EL MODELO *//
-  factory MovResponseModel.fromMap(Map<String, dynamic> json) {
+  factory MovResponseModel.fromJson(Map<String, dynamic> json) {
     return MovResponseModel(
         success: json['success'] ?? false,
-        results: List<MovModel>.from(json['results'].map((result) => MovModel.fromJson(result)))
+        results: List<MovModel>.from(json['results'].map((x)=> MovModel.fromJson(x) ))
     );
   }
 
@@ -23,23 +25,32 @@ class MovResponseModel {
 
 class MovModel{
 
-  int id;
+  int? id;
+  int? userId;
   int categoryId;
   int tipo;
   String description;
-  double value;
-  String fecha;
+  int value;
+  String? fecha;
 
-  MovModel({ required this.id, required this.tipo, required this.description, required this.value, required this.fecha, required this.categoryId});
+  MovModel({ this.userId,  this.id, required this.tipo, required this.description, required this.value, this.fecha, required this.categoryId});
 
   factory MovModel.fromJson(Map<String, dynamic> json) {
     return MovModel(
+        userId: json['user_id'] ?? 0,
+        id: json['id'] ?? 0,
         categoryId: json['category_id'] ?? 0,
-        tipo: json['tipo'] ?? 0,
         description : json['description'] ?? '',
         value: json['value'] ?? 0,
+        tipo: json['tipo'] ?? 0,
         fecha: json['created_at'] ?? '',
-        id: json['id'] ?? 0
       );
   }
+
+  Map<String, dynamic> toJson()=>{
+        'category_id': categoryId,
+        'description': description,
+        'value': value,
+        'tipo': tipo,
+  };
 }

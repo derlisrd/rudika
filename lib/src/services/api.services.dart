@@ -1,6 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'package:rudika/src/config/constants.dart';
 import 'package:rudika/src/models/login.response.model.dart';
+import 'package:rudika/src/models/mov.response.model.dart';
 import 'dart:convert';
 
 import 'package:rudika/src/models/register.response.model.dart';
@@ -116,7 +117,7 @@ class ApiServices{
   }
 
 
-  void getMovements(String token) async {
+  Future<MovResponseModel> getMovements(String token) async {
      try {
 
       http.Response res = await http.get(
@@ -130,12 +131,14 @@ class ApiServices{
       );
 
       Map<String,dynamic> json = jsonDecode(res.body);
-
-      print(json);
-      
+      //print(json);
+      MovResponseModel mov = MovResponseModel.fromJson(json);
+      return mov;
     } catch (e) {
-      Map<String,dynamic> error = {"success": false, "message": e.toString()};
-      print(error);
+      
+      Map<String,dynamic> error = {"success": false, "results": []};
+      MovResponseModel movE = MovResponseModel.fromJson(error);
+      return movE;
     }
   }
 

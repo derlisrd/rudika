@@ -94,7 +94,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          child: _isLoading ? _loadingScreen() : SingleChildScrollView( child: _formulario(context),)
+          child: _isLoading ? _loadingScreen() : SingleChildScrollView( child: Center(child: _formulario(context)),)
       ),
     );
   }
@@ -118,32 +118,37 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
 
   Widget _formulario(BuildContext context){
-    return (
-      Column(
-        children: [
-          const SizedBox(height: 12),
-          const Icon(Icons.person,size: 48),
-          const Center(child: TitlePrimary("Registrarme")),
-          FieldPrimary( controller: nameController, hintText: 'Nombre',errorText: nameError.isEmpty ? null : nameError ),
-          FieldPrimary( controller: emailController, hintText: 'E-mail', errorText: emailError.isEmpty ? null : emailError ),
-          FieldPassword( controller: passwordController, oscureText: passwordVisible, hintText: 'Contraseña', onPressed: switchPass,errorText: passwordError.isEmpty ? null : passwordError),
-          FieldPassword( controller: password2Controller, oscureText: passwordVisible2, hintText: 'Repetir contraseña', onPressed: switchPass2,errorText: passwordError2.isEmpty ? null : passwordError2,),
-          Row(
-            children: [
-              const SizedBox(width: 18),
-              const Subtitle('Ya tienes cuenta?'),
-              GestureDetector(
-                onTap: (){ Navigator.pop(context);},
-                child: const Subtitle('Entrar'),
+    return Container(
+      constraints: const BoxConstraints(
+                maxWidth: 480,
               ),
-            ],
-          ),
-          PrimaryButton(
-            text: "REGISTRAR",
-            onTap: ()=> _tryregister(context),
-          )
-        ],
-      )
+      child: (
+        Column(
+          children: [
+            const SizedBox(height: 12),
+            const Icon(Icons.person,size: 48),
+            const Center(child: TitlePrimary("Registrarme")),
+            FieldPrimary( controller: nameController, hintText: 'Nombre',errorText: nameError.isEmpty ? null : nameError ),
+            FieldPrimary( controller: emailController, hintText: 'E-mail', errorText: emailError.isEmpty ? null : emailError ),
+            FieldPassword( controller: passwordController, oscureText: passwordVisible, hintText: 'Contraseña', onPressed: switchPass,errorText: passwordError.isEmpty ? null : passwordError),
+            FieldPassword( controller: password2Controller, oscureText: passwordVisible2, hintText: 'Repetir contraseña', onPressed: switchPass2,errorText: passwordError2.isEmpty ? null : passwordError2,),
+            Row(
+              children: [
+                const SizedBox(width: 18),
+                const Subtitle('Ya tienes cuenta?'),
+                GestureDetector(
+                  onTap: (){ Navigator.pop(context);},
+                  child: const Subtitle('Entrar'),
+                ),
+              ],
+            ),
+            PrimaryButton(
+              text: "REGISTRAR",
+              onTap: ()=> _tryregister(context),
+            )
+          ],
+        )
+      ),
     );
   }
 

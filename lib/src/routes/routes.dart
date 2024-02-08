@@ -17,6 +17,7 @@ class Routes{
         "authmain":(context) => const AuthScreen(),
         "home":(context) => const HomeScreen(),
         "settings":(context) => const SettingScreen(),
+        "add": (context) => const AddScreen()
       };
   }
 }

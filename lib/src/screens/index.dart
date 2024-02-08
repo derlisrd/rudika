@@ -1,5 +1,5 @@
+export 'package:rudika/src/screens/auth/add/add.screen.dart';
 export 'package:rudika/src/screens/guest/thinking.screen.dart';
-
 export 'package:rudika/src/screens/auth/home/home.screen.dart';
 export 'package:rudika/src/screens/auth/settings/setting.screen.dart';
 export 'package:rudika/src/screens/auth/auth.screens.dart';
