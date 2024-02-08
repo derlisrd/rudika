@@ -93,6 +93,29 @@ class ApiServices{
   }
 
 
+  Future<void> logOut(String token)async{
+      
+      try {
+       await http.post(
+        Uri.parse('${Constants.apiUrl}/auth/logout'),
+        headers:{
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'x-api-key': Constants.xApiKey,
+          'Authorization': 'Bearer $token'
+        },
+      );
+
+      //Map<String,dynamic> json = jsonDecode(res.body);
+
+    } catch (e) {
+      //Map<String,dynamic> error = {"success": false, "message": e.toString()};
+      //LoginResponseModel loginResponseError = LoginResponseModel.fromMap(error);
+      //return loginResponseError;
+    }
+  }
+
+
   void getMovements(String token) async {
      try {
 
